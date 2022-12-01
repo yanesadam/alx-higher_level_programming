@@ -1,9 +1,5 @@
-$(document).ready(function () {
-  $.ajax({
-    type: 'GET',
-    url: 'https://swapi.co/api/people/5/?format=json',
-    success: function (data) {
-      $('DIV#character').text(data.name);
-    }
-  });
+const $ = window.$;
+const url = 'https://swapi-api.hbtn.io/api/people/5/?format=json';
+$.getJSON(url, function (result) {
+  $('DIV#character').append(result.name);
 });

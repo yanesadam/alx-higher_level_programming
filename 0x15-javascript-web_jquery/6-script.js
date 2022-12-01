@@ -1,5 +1,4 @@
-$(document).ready(function () {
-  $('DIV#update_header').click(function () {
-    $('HEADER').text('New Header!!!');
-  });
+const $ = window.$;
+$('DIV#update_header').click(function () {
+  $('header').replaceWith('<header>New Header!!!</header>');
 });

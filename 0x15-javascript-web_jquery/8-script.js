@@ -1,11 +1,8 @@
-$(document).ready(function () {
-  $.ajax({
-    type: 'GET',
-    url: 'https://swapi.co/api/films/?format=json',
-    success: function (data) {
-      $.each(data.results, function (i, film) {
-        $('UL#list_movies').append('<li>' + film.title + '</li>');
-      });
-    }
+const $ = window.$;
+const url = 'https://swapi-api.hbtn.io/api/films/?format=json';
+$.getJSON(url, function (body) {
+  const result = body.results;
+  $.each(result, function (i, field) {
+    $('UL#list_movies').append('<li>' + field.title + '</li>');
   });
 });

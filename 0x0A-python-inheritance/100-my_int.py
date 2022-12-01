@@ -1,12 +1,15 @@
 #!/usr/bin/python3
-""" class MyInt that inherits from int:
+
+"""
+module for MyInt.
 """
 
 
 class MyInt(int):
-    """ Class """
-    def __eq__(self, other):
-        return int(str(self)) != other
+    """MyInt class"""
 
     def __ne__(self, other):
-        return int(str(self)) == other
+        return super().__eq__(other)
+
+    def __eq__(self, other):
+        return super().__ne__(other)

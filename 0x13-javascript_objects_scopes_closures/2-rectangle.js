@@ -1,6 +1,11 @@
 #!/usr/bin/node
-module.exports = class Rectangle {
-  constructor (w, h) {
-    if (w > 0 && h > 0) { [this.width, this.height] = [w, h]; }
+class Rectangle {
+  constructor (weight, height) {
+    if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+      return;
+    }
+    this.width = weight;
+    this.height = height;
   }
-};
+}
+module.exports = Rectangle;

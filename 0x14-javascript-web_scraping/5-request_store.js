@@ -1,9 +1,18 @@
 #!/usr/bin/node
-const request = require('request');
 const fs = require('fs');
+const request = require('request');
 
-request(process.argv[2], function (err, response, body) {
-  if (err == null) {
-    fs.writeFileSync(process.argv[3], body);
+const url = process.argv[2];
+const path = process.argv[3];
+
+request(url, function (error, response, body) {
+  if (error) {
+    console.log(error);
+  } else {
+    fs.writeFile(path, body, function (error) {
+      if (error) {
+        console.log(error);
+      }
+    });
   }
 });

@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-"""class MyList that inherits from list
+"""
+module for MyList
 """
 
 
 class MyList(list):
-    """inherits from list"""
+    """MyList class."""
+
     def print_sorted(self):
-        """prints the list, but sorted
-        (ascending sort)
-        """
+        """Print the list sorted."""
         print(sorted(self))

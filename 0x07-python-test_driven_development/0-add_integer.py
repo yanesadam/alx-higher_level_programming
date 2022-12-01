@@ -1,30 +1,23 @@
 #!/usr/bin/python3
 """
-
-This module is composed by a function that adds two numbers
-
+Module add-integer
+add two integers
 """
 
 
 def add_integer(a, b=98):
-    """ Function that adds two integer and/or float numbers
-
-    Args:
-        a: first number
-        b: second number
-
-    Returns:
-        The addition of the two given numbers
-
-    Raises:
-        TypeError: If a or b aren't integer and/or float numbers
-
+    """ This function return the sum of intgers
+    or the int cast of floats
     """
 
-    if not isinstance(a, int) and not isinstance(a, float):
+    if type(a) != int and type(a) != float:
         raise TypeError("a must be an integer")
-    if not isinstance(b, int) and not isinstance(b, float):
+    if type(b) != int and type(b) != float:
         raise TypeError("b must be an integer")
-    a = int(a)
-    b = int(b)
-    return (a + b)
+
+    if type(a) == float:
+        a = int(a)
+    if type(b) == float:
+        b = int(b)
+
+    return a + b

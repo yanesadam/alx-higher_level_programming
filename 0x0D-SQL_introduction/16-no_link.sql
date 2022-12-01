@@ -1,6 +1,2 @@
--- Lists all records of the table second_table having a name value.
--- Records are ordered by descending score.
-SELECT `score`, `name`
-FROM `second_table`
-WHERE `name` != ""
-ORDER BY `score` DESC
+-- Char-length * order
+SELECT score, name FROM second_table WHERE CHAR_LENGTH(name) > 0 ORDER BY score DESC;

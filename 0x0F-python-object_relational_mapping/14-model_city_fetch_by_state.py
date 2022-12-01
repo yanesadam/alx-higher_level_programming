@@ -1,19 +1,19 @@
 #!/usr/bin/python3
-""" prints the State object with the name passed as argument from the database
-"""
-import sys
+""" print all city objects """
+
 from model_state import Base, State
 from model_city import City
-from sqlalchemy import (create_engine)
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+import sys
 
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'
-                           .format(sys.argv[1], sys.argv[2], sys.argv[3]))
+                           .format(sys.argv[1], sys.argv[2], sys.argv[3]),
+                           pool_pre_ping=True)
     Base.metadata.create_all(engine)
-    Session = sessionmaker(bind=engine)
-    session = Session()
-    for instance in (session.query(State.name, City.id, City.name)
-                     .filter(State.id == City.state_id)):
-        print(instance[0] + ": (" + str(instance[1]) + ") " + instance[2])
+    Sessionmaker = sessionmaker(bind=engine)
+    session = Sessionmaker()
+    for ci, st in session.query(City, State).filter(City.state_id == State.id):
+        print("{:s}: ({:d}) {:s}".format(st.name, ci.id, ci.name))
+    session.close()

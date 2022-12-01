@@ -1,114 +1,56 @@
 #include "lists.h"
-
+#include <stddef.h>
 /**
- * reverse - reverses the second half of the list
- *
- * @h_r: head of the second half
- * Return: no return
- */
-void reverse(listint_t **h_r)
-{
-	listint_t *prv;
-	listint_t *crr;
-	listint_t *nxt;
-
-	prv = NULL;
-	crr = *h_r;
-
-	while (crr != NULL)
-	{
-		nxt = crr->next;
-		crr->next = prv;
-		prv = crr;
-		crr = nxt;
-	}
-
-	*h_r = prv;
-}
-
-/**
- * compare - compares each int of the list
- *
- * @h1: head of the first half
- * @h2: head of the second half
- * Return: 1 if are equals, 0 if not
- */
-int compare(listint_t *h1, listint_t *h2)
-{
-	listint_t *tmp1;
-	listint_t *tmp2;
-
-	tmp1 = h1;
-	tmp2 = h2;
-
-	while (tmp1 != NULL && tmp2 != NULL)
-	{
-		if (tmp1->n == tmp2->n)
-		{
-			tmp1 = tmp1->next;
-			tmp2 = tmp2->next;
-		}
-		else
-		{
-			return (0);
-		}
-	}
-
-	if (tmp1 == NULL && tmp2 == NULL)
-	{
-		return (1);
-	}
-
-	return (0);
-}
-
-/**
- * is_palindrome - checks if a singly linked list
- * is a palindrome
- * @head: pointer to head of list
- * Return: 0 if it is not a palindrome,
- * 1 if it is a palndrome
+ * is_palindrome - check if a list is a palindrome
+ * @head: double pointer to head of list
+ * Return: 1 or 0 depends on the case
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *slow, *fast, *prev_slow;
-	listint_t *scn_half, *middle;
-	int isp;
+	listint_t *tortoise = *head, *hare = *head, *prev = *head;
+	listint_t *list_2 = NULL, *mid_list = NULL, *actual, *tmp;
+	int ret = 0;
 
-	slow = fast = prev_slow = *head;
-	middle = NULL;
-	isp = 1;
+	if (hare == NULL || hare->next == NULL)
+		return (1);
+	while (hare != NULL && hare->next != NULL)
+		hare = hare->next->next, prev = tortoise, tortoise = tortoise->next;
+	if (hare != NULL)
+		mid_list = tortoise, tortoise = tortoise->next;
+	list_2 = tortoise, prev->next = NULL;
+	prev = NULL, actual = list_2;
+	while (actual)
+		tmp = actual->next, actual->next = prev, prev = actual, actual = tmp;
+	list_2 = prev;
+	ret = cmp(*head, list_2);
+	prev = NULL, actual = list_2;
+	while (actual)
+		tmp = actual->next, actual->next = prev, prev = actual, actual = tmp;
+	list_2 = prev;
+	if (mid_list)
+		prev->next = mid_list, mid_list->next = list_2;
+	else
+		prev->next = list_2;
+	return (ret);
+}
+/**
+ * cmp - function to compare beginning and end of list
+ * @h1: list from top
+ * @h2: list from bottom
+ * Return: Always zero
+ */
+int cmp(listint_t *h1, listint_t *h2)
+{
+	listint_t *tmp1 = h1, *tmp2 = h2;
 
-	if (*head != NULL && (*head)->next != NULL)
+	while (tmp1 && tmp2)
 	{
-		while (fast != NULL && fast->next != NULL)
-		{
-			fast = fast->next->next;
-			prev_slow = slow;
-			slow = slow->next;
-		}
-
-		if (fast != NULL)
-		{
-			middle = slow;
-			slow = slow->next;
-		}
-
-		scn_half = slow;
-		prev_slow->next = NULL;
-		reverse(&scn_half);
-		isp = compare(*head, scn_half);
-
-		if (middle != NULL)
-		{
-			prev_slow->next = middle;
-			middle->next = scn_half;
-		}
+		if (tmp1->n == tmp2->n)
+			tmp1 = tmp1->next, tmp2 = tmp2->next;
 		else
-		{
-			prev_slow->next = scn_half;
-		}
+			return (0);
 	}
-
-	return (isp);
+	if (tmp1 == NULL && tmp2 == NULL)
+		return (1);
+	return (0);
 }
