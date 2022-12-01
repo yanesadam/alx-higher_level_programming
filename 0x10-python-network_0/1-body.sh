@@ -1,3 +1,3 @@
 #!/bin/bash
-# This script takes in a URL, sends GET request and displays body of response
-curl -sL "$1"
+# script that takes in a URL, sends GET and displays body of response
+curl -sLX GET "$1"

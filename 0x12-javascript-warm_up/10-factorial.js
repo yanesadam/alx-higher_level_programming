@@ -1,13 +1,18 @@
 #!/usr/bin/node
 
-function factorial (number) {
-  if (isNaN(parseInt(number))) {
-    return (1);
+function factorial (a) {
+  if (a <= 0) {
+    return 0;
+  } else if (a === 1) {
+    return 1;
+  } else {
+    return (a * factorial(a - 1));
   }
-  if (number === 1) {
-    return (1);
-  }
-  return (number * factorial(number - 1));
 }
 
-console.log(factorial(parseInt(process.argv[2])));
+const myInt = parseInt(process.argv[2]);
+if (isNaN(myInt)) {
+  console.log('1');
+} else {
+  console.log(factorial(myInt));
+}

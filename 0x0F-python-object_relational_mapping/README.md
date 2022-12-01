@@ -1,1 +1,2 @@
-0x0F-python-object_relational_mapping
+# 0x0F. Object Relational Mapping.
+Object Relational Mapping in Python.

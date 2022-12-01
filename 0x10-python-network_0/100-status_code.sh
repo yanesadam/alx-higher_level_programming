@@ -1,3 +1,3 @@
 #!/bin/bash
-# Displays only the status code
-curl -sLw "%{http_code}" -o /dev/null "$1"
+# Sends request to URL arg and displays status code of response
+curl "$1" -w '%{http_code}' -so /dev/null
