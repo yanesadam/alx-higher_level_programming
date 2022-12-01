@@ -1,37 +1,32 @@
 #!/usr/bin/python3
-"""
-    Module for class Student
+""" Module that defines the class Student
 """
 
 
 class Student:
-    """
-        A class students that defines a student by:
-        Attributes:
-            first_name (str): name of student.
-            last_name (str): name of student.
-            age (int): age of student.
-        Methods:
-            __init__ - initializes the Student instance.
-            to_json - retrieves dictionary repr of Student instance.
-    """
+    """ Class to create student instances """
+
     def __init__(self, first_name, last_name, age):
-        """
-            Initialises Student instance.
-        """
+        """ Special method to initialize """
         self.first_name = first_name
         self.last_name = last_name
         self.age = age
 
-    def to_json(self, attr=None):
-        """
-            retrieves a dictionary representation of Student.
-            Args:
-                attr (list): attribute names that are to be retrieved.
-        """
+    def to_json(self, attrs=None):
+        """ Method that returns directory description """
+        obj = self.__dict__.copy()
+        if type(attrs) is list:
 
-        if attr is not None:
-            res = {k: self.__dict__[k] for k in self.__dict__.keys() & attr}
-            return res
-        else:
-            return self.__dict__
+            for item in attrs:
+                if type(item) is not str:
+                    return obj
+
+            d_list = {}
+
+            for iatr in range(len(attrs)):
+                for satr in obj:
+                    if attrs[iatr] == satr:
+                        d_list[satr] = obj[satr]
+            return d_list
+
+        return obj

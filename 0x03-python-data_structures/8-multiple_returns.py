@@ -1,11 +1,10 @@
 #!/usr/bin/python3
-
-
 def multiple_returns(sentence):
-    """Returns tuple with len of string and first char"""
-    length = len(sentence)
-    if sentence:
-        first = sentence[0]
+    len_sen = len(sentence)
+
+    if (len_sen == 0):
+        new_tuple = (len_sen, None)
     else:
-        first = None
-    return (length, first)
+        new_tuple = (len_sen, sentence[0])
+
+    return (new_tuple)

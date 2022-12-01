@@ -1,80 +1,117 @@
-# SQL INTRODUCTION
+# SQL - Introduction
 
-## Introduction
+This was my first project in which I began to work with SQL and relational
+databases. I began practicing introductory data definition and data
+manipulation language, making subqueries, and using functions.
 
-This directory deals with the basics of working with SQL in a MySQL server such as:
+## Usage :dolphin:
 
-### 0-list_databases.sql
+* Scripts [3-list_tables.sql](./3-list_tables.sql) forward take the database to query
+from as a MySQL command line argument.
 
-List all databases of a MySQL server.
+```
+$ cat 3-list_tables.sql | mysql -h localhost -u root -p mysql
+```
 
-### 1-create_database_if_missing.sql
+* Tasks 101-103 query from the database [temperatures.sql](./temperatures.sql).
 
-Create a new database if it does not already exist
+## Tasks :page_with_curl:
 
-### 2-remove_database.sql
+* **0. List databases**
+  * [0-list_databases.sql](./0-list_databases.sql): MySQL script that lists all databases.
 
-Delete a database from a MySQL server if it already exists
+* **1. Create a database**
+  * [1-create_database.sql](./1-create_database.sql): MySQL script that creates the database
+  `hbtn_0c_0`.
 
-### 3-list_tables.sql
+* **2. Delete a database**
+  * [2-remove_databases.sql](./2-remove_databases.sql): MySQL script that deletes the database
+  `hbtn_0c_0`.
 
-List all the tables of a given database in a MySQL server.
+* **3. List tables**
+  * [3-list_tables.sql](./3-list_tables.sql): MySQL script that lists all tables.
 
-### 4-first_table.sql
+* **4. First table**
+  * [4-first_table.sql](./4-first_table.sql): MySQL script that creates a table `first_table`.
+  * Description:
+    * `id`: INT
+    * `name`: VARCHAR(256)
 
-Create a table in a database in a MySQL server.
+* **5. Full description**
+  * [5-full_table.sql](./5-full_table.sql): MySQL script that prints the full description of the
+  table `first_table`.
 
-### 5-full_table.sql
+* **6. List all in table**
+  * [6-list_values.sql](./6-list_values.sql): MySQL script that lists all rows of the table
+  `first_table`.
 
-Print the full description of a table from a database in a MySQL server that
-shows the column names and data types for each column.
+* **7. First add**
+  * [7-insert_value.sql](./7-insert_value.sql): MySQL script that inserts a new row in the table
+  `first_table`.
+  * Description:
+    * `id` = `89`
+    * `name` = `Best School`
 
-### 6-list_values.sql
+* **8. Count 89**
+  * [8-count_89.sql](./8-count_89.sql): MySQL script that displays the number records with `id =
+  89` in the table `first_table`.
 
-List all rows of a table in a database in a MySQL server.
+* **9. Full creation**
+  * [9-full_creation.sql](./9-full_creation.sql): MySQL script that creates and fills a table
+  `second_table`.
+  * Description:
+    * `id`: INT
+    * `name`: VARCHAR(256)
+    * `score`: INT
+  * Records:
+    * `id` = 1, `name` = "John", `score` = 10
+    * `id` = 2, `name` = "Alex", `score` = 3
+    * `id` = 3, `name` = "Bob", `score` = 14
+    * `id` = 4, `name` = "George", `score` = 8
 
-### 7-insert_value.sql
+* **10. List by best**
+  * [10-top_score.sql](./10-top_score.sql): MySQL script that lists the `score` and `name` of all
+  records of the table `second_table` in order of descending `score`.
 
-Insert a new row or entry in a table in a database in a MySQL server.
+* **11. Select the best**
+  * [11-best_score.sql](./11-best_score.sql): MySQL script that lists the `score` and `name` of all
+  records with a `score >= 10` in the table `second_table` in order of descending score.
 
-### 8-count_89.sql
+* **12. Cheating is bad**
+  * [12-no_cheating.sql](./12-no_cheating.sql): MySQL script that updates the score of Bob to 10
+  the table `second_table`.
 
-Display the number of records that meet a certain condition in a table in a
-database in a MySQL server.
+* **13. Score too low**
+  * [13-change_class.sql](./13-change_class.sql): MySQL script that removes all records with a
+  `score <= 5` in the table `second_table`.
 
-### 9-full_creation.sql
+* **14. Average**
+  * [14-average.sql](./14-average.sql): MySQL script that computes the average `score` of all
+  records in the table `second_table`.
 
-Create a table in a database in a MySQL server and populate it with entries
-or rows of data.
+* **15. Number by score**
+  * [15-groups.sql](./15-groups.sql): MySQL script that lists the `score` and number of records
+  with the same score in the table `second_table` in order of descending count.
 
-### 10-top_score.sql
+* **16. Say my name**
+  * [16-no_link.sql](./16-no_link.sql): MySQL script that lists the `score` and `name` of all
+  records in the table `second_table` in order of descending `score`.
+  * Does not display rows without a `name` value.
 
-List all records in a table in a MySQL database in a certain order.
+* **17. Go to UTF8**
+  * [100-move_to_utf8.sql](./100-move_to_utf8.sql): MySQL script that converts the `hbtn_0c_0`
+  database to UTF8.
 
-### 11-best_score.sql
+[This link](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/272/temperatures.sql) was used for the following tasks:
 
-List all records that meet a certain criteria in a table in a MySQL database.
+* **18. Temperatures #0**
+  * [101-avg_temperatures.sql](./101-avg_temperatures.sql): MySQL script that displays the average
+  temperature (Fahrenheit) by city in descending order.
 
-### 12-no_cheating.sql
+* **19. Temperatures #1**
+  * [102-top_city.sql](./102-top_city.sql): MySQL script that displays the three cities with the
+  highest average temperature from July to August in descending order.
 
-Update a record or entry in a table in a MySQL database.
-
-### 13-change_class.sql
-
-Remove all records that meet a certain criteria from a table in a MySQL database.
-
-### 14-average.sql
-
-Compute the average of a column of numerical data in a table in a MySQL database.
-
-### 15-groups.sql
-
-List the number of records with the same data in a certain column and report the
-number of occurrences. Report the result, ordered in decreasing order of number
-of occurrences.
-
-### 16-no_link.sql
-
-List all records of a table where there is no NULL value in a certain column of
-interest.
-
+* **20. Temperature #2**
+  * [103-max_state.sql](./103-max_state.sql): MySQL script that displays the max temperature of each
+  state in order of state name.
